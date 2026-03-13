@@ -9,7 +9,7 @@ import type { GetSchemes } from "rete";
 import { ClassicPreset } from "rete";
 import { AreaPlugin, AreaExtensions } from "rete-area-plugin";
 import {
-  ConnectionPlugin, 
+  ConnectionPlugin,
   Presets as ConnectionPresets,
 } from "rete-connection-plugin";
 import { ReactPlugin, Presets as ReactPresets } from "rete-react-plugin";
