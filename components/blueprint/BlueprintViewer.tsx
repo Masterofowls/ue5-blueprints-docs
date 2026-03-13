@@ -41,9 +41,8 @@ export default function BlueprintViewer({ blueprint }: BlueprintViewerProps) {
 
   return (
     <div className="blueprint-viewer">
-      {/* Blueprint Visual Representation */}
       <div className="mb-8">
-        <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+        <h3 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl dark:text-white">
           Interactive Blueprint Editor
         </h3>
         <InteractiveBlueprintEditor
@@ -54,20 +53,19 @@ export default function BlueprintViewer({ blueprint }: BlueprintViewerProps) {
         />
       </div>
 
-      {/* Copy Code Section */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
+        <div className="p-4 sm:p-6">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <label
               htmlFor="blueprint-code"
-              className="text-lg font-semibold text-gray-900 dark:text-white"
+              className="text-base font-semibold text-gray-900 sm:text-lg dark:text-white"
             >
               Blueprint Code (Copy & Paste into Unreal Engine)
             </label>
             <button
               type="button"
               onClick={handleCopy}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 sm:min-h-10 sm:w-auto"
             >
               {copied ? (
                 <>
@@ -115,7 +113,7 @@ export default function BlueprintViewer({ blueprint }: BlueprintViewerProps) {
               id="blueprint-code"
               readOnly
               value={blueprint.code}
-              className="w-full h-64 p-4 font-mono text-sm bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="h-56 w-full resize-none rounded-lg border border-gray-300 bg-gray-50 p-3 font-mono text-xs focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-900 sm:h-64 sm:p-4 sm:text-sm"
               onClick={handleManualCopy}
             />
             <div className="mt-3 text-sm text-gray-600 dark:text-gray-400">

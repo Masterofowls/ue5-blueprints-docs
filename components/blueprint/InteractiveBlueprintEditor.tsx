@@ -1371,7 +1371,7 @@ export default function InteractiveBlueprintEditor({
             className="blueprint-editor"
             style={{
               width: "100%",
-              height: "620px",
+              height: "min(620px, 72svh)",
               position: "relative",
             }}
           />
@@ -1389,7 +1389,7 @@ export default function InteractiveBlueprintEditor({
         </div>
       </div>
 
-      <div className="mt-4 rounded-[24px] border border-slate-700/80 bg-slate-900/95 p-4 shadow-[0_20px_60px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div className="mt-4 rounded-[24px] border border-slate-700/80 bg-slate-900/95 p-4 shadow-[0_20px_60px_rgba(2,6,23,0.35)] sm:p-5">
         <div className="grid grid-cols-1 gap-4 text-sm text-gray-300 md:grid-cols-2 xl:grid-cols-4">
           <div>
             <h4 className="mb-2 font-semibold text-white">Mouse Controls</h4>
@@ -1484,7 +1484,7 @@ export default function InteractiveBlueprintEditor({
                 Emissive: {materialEvaluation.summary.emissive.preview}
               </span>
             </div>
-            <pre className="overflow-x-auto rounded-2xl border border-slate-700/80 bg-slate-950/90 p-4 text-xs text-cyan-100">
+            <pre className="overflow-x-auto rounded-2xl border border-slate-700/80 bg-slate-950/90 p-3 text-[11px] text-cyan-100 sm:p-4 sm:text-xs">
               {materialEvaluation.code}
             </pre>
 

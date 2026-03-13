@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">UE5 Blueprints App Icon</title>
+  <desc id="desc">A cyan blueprint node network on a dark slate background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect x="112" y="126" width="288" height="260" rx="36" fill="#0b1220" stroke="#334155" stroke-width="10" />
+  <rect x="136" y="156" width="240" height="46" rx="18" fill="#111c2e" />
+  <circle cx="174" cy="179" r="10" fill="#22d3ee" />
+  <circle cx="206" cy="179" r="10" fill="#38bdf8" />
+  <circle cx="238" cy="179" r="10" fill="#67e8f9" />
+  <path d="M174 274h68m28 0h68M208 274l66-48m-66 48l66 46" stroke="url(#accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="174" cy="274" r="22" fill="#22d3ee" />
+  <circle cx="308" cy="226" r="22" fill="#38bdf8" />
+  <circle cx="308" cy="320" r="22" fill="#67e8f9" />
+  <path d="M196 352h120" stroke="#1e293b" stroke-width="12" stroke-linecap="round" />
+</svg>

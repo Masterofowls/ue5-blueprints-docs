@@ -94,12 +94,12 @@ export default function NewBlueprintNotePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_32%),linear-gradient(135deg,#0f172a,#1d4ed8)] py-16 text-white">
+      <div className="bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_32%),linear-gradient(135deg,#0f172a,#1d4ed8)] py-12 text-white sm:py-16">
         <div className="container mx-auto px-4">
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+          <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
             Post A Blueprint Note
           </h1>
-          <p className="max-w-3xl text-xl text-blue-50">
+          <p className="max-w-3xl text-base text-blue-50 sm:text-lg md:text-xl">
             Paste Unreal Blueprint Code, let the app generate the interactive
             viewport, then save the note locally for browsing, search, and
             revisit on this device.
@@ -107,10 +107,10 @@ export default function NewBlueprintNotePage() {
         </div>
       </div>
 
-      <div className="container mx-auto grid gap-8 px-4 py-10 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)]">
+      <div className="container mx-auto grid gap-6 px-4 py-6 sm:gap-8 sm:py-10 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)]">
         <form
           onSubmit={handleSubmit}
-          className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+          className="rounded-3xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 dark:border-gray-700 dark:bg-gray-800"
         >
           <div className="grid gap-4">
             <Field label="Title">
@@ -232,9 +232,9 @@ export default function NewBlueprintNotePage() {
 
         <div className="space-y-6">
           <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <div className="mb-4 flex items-center justify-between gap-4">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h2 className="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
                   Interactive Preview
                 </h2>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -252,7 +252,7 @@ export default function NewBlueprintNotePage() {
                 readonly={false}
               />
             ) : (
-              <div className="flex min-h-[360px] items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 text-center text-gray-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400">
+              <div className="flex min-h-[260px] items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-4 text-center text-sm text-gray-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-400 sm:min-h-[360px] sm:text-base">
                 Paste Blueprint Code to generate the viewport.
               </div>
             )}

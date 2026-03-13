@@ -53,24 +53,24 @@ export default function BlueprintDetailClient({
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 py-20">
-          <div className="mx-auto max-w-2xl rounded-3xl border border-gray-200 bg-white p-10 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <h1 className="mb-3 text-3xl font-bold text-gray-900 dark:text-white">
+          <div className="mx-auto max-w-2xl rounded-3xl border border-gray-200 bg-white p-6 text-center shadow-sm sm:p-10 dark:border-gray-700 dark:bg-gray-800">
+            <h1 className="mb-3 text-2xl font-bold text-gray-900 sm:text-3xl dark:text-white">
               Blueprint Note Not Found
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
               The note may have been removed from this browser or never saved on
               this device.
             </p>
-            <div className="mt-8 flex items-center justify-center gap-3">
+            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/blueprints"
-                className="rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+                className="rounded-lg bg-blue-600 px-5 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-700"
               >
                 Browse Blueprints
               </Link>
               <Link
                 href="/blueprints/new"
-                className="rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
+                className="rounded-lg border border-gray-300 px-5 py-3 text-center font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
               >
                 Create New Note
               </Link>
@@ -93,7 +93,7 @@ export default function BlueprintDetailClient({
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div
-        className="bg-gradient-to-r from-blue-600 to-purple-600 py-16 text-white"
+        className="bg-gradient-to-r from-blue-600 to-purple-600 py-12 text-white sm:py-16"
         style={
           category
             ? {
@@ -104,7 +104,7 @@ export default function BlueprintDetailClient({
       >
         <div className="container mx-auto px-4">
           <nav className="mb-6">
-            <ol className="flex items-center space-x-2 text-sm text-blue-100">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-blue-100">
               <li>
                 <Link href="/" className="hover:text-white">
                   Home
@@ -134,10 +134,10 @@ export default function BlueprintDetailClient({
 
           <div className="flex items-start gap-6">
             <div className="flex-grow">
-              <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+              <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
                 {blueprint.title}
               </h1>
-              <p className="mb-6 text-xl text-blue-50">
+              <p className="mb-6 text-base text-blue-50 sm:text-lg md:text-xl">
                 {blueprint.description}
               </p>
 
@@ -162,7 +162,7 @@ export default function BlueprintDetailClient({
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-6xl">
           <BlueprintViewer blueprint={blueprint} />
 
@@ -184,8 +184,8 @@ export default function BlueprintDetailClient({
             </div>
           ) : null}
 
-          <div className="mt-8 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
-            <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+          <div className="mt-8 rounded-lg border border-gray-200 bg-white p-5 shadow sm:p-6 dark:border-gray-700 dark:bg-gray-800">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
               <div>
                 <h4 className="mb-1 text-sm font-semibold text-gray-500 dark:text-gray-400">
                   Author

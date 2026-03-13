@@ -609,10 +609,13 @@
   .blueprint-editor-shell__chrome {
     flex-direction: column;
     align-items: flex-start;
+    padding: 14px 16px;
   }
 
   .blueprint-editor-shell__status {
     justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
   }
 
   .blueprint-editor-shell__legend {
@@ -620,6 +623,62 @@
     right: 16px;
     bottom: 16px;
     justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    font-size: 10px;
+    flex-wrap: wrap;
+  }
+
+  .blueprint-editor-shell__pill,
+  .blueprint-editor-shell__action {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .ue-node {
+    max-width: min(78vw, 320px);
+  }
+
+  .ue-node__row {
+    gap: 10px;
+  }
+
+  .ue-node__title {
+    font-size: 13px;
+  }
+
+  .ue-node__pin-label {
+    font-size: 11px;
+  }
+
+  .context-menu {
+    min-width: min(240px, calc(100vw - 32px));
+  }
+}
+
+@media (max-width: 520px) {
+  .blueprint-editor {
+    border-radius: 0 0 22px 22px;
+  }
+
+  .blueprint-editor-shell__legend {
+    display: none;
+  }
+
+  .blueprint-editor-shell__orb--blue {
+    width: 160px;
+    height: 160px;
+    left: -42px;
+  }
+
+  .blueprint-editor-shell__orb--cyan {
+    width: 170px;
+    height: 170px;
+    right: -34px;
+  }
+
+  .ue-node {
+    max-width: min(84vw, 296px);
   }
 }
 
