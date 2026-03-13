@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Blueprint } from "@/lib/types/blueprint";
+import { getAssetPath, getBlueprintHref } from "@/lib/blueprint/routing";
 import { getCategoryColor } from "@/lib/data/categories";
 
 interface BlueprintCardProps {
@@ -9,6 +10,8 @@ interface BlueprintCardProps {
 }
 
 export default function BlueprintCard({ blueprint }: BlueprintCardProps) {
+  const href = getBlueprintHref(blueprint.id);
+  const thumbnailSrc = getAssetPath(blueprint.thumbnail);
   const difficultyColor = {
     beginner:
       "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
@@ -18,7 +21,7 @@ export default function BlueprintCard({ blueprint }: BlueprintCardProps) {
   }[blueprint.difficulty];
 
   return (
-    <Link href={`/blueprints/${blueprint.id}`} className="block group">
+    <Link href={href} className="block group">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700 overflow-hidden h-full">
         {/* Thumbnail/Visual Preview */}
         <div
@@ -27,9 +30,9 @@ export default function BlueprintCard({ blueprint }: BlueprintCardProps) {
             borderBottom: `4px solid ${getCategoryColor(blueprint.category)}`,
           }}
         >
-          {blueprint.thumbnail ? (
+          {thumbnailSrc ? (
             <img
-              src={blueprint.thumbnail}
+              src={thumbnailSrc}
               alt={blueprint.title}
               className="w-full h-full object-cover"
             />

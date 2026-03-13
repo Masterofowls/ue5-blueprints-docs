@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { categories } from "@/lib/data/categories";
 import { parseBlueprintCode } from "@/lib/blueprint/parse-blueprint-code";
+import { getBlueprintHref } from "@/lib/blueprint/routing";
 import {
   createBlueprintNoteId,
   saveBlueprintNote,
@@ -88,7 +89,7 @@ export default function NewBlueprintNotePage() {
     };
 
     saveBlueprintNote(blueprint);
-    router.push(`/blueprints/${blueprint.id}`);
+    router.push(getBlueprintHref(blueprint.id));
   };
 
   return (

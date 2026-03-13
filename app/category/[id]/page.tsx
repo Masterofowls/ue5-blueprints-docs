@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCategoryById } from "@/lib/data/categories";
+import { categories, getCategoryById } from "@/lib/data/categories";
 import CategoryBlueprintsClient from "@/components/blueprint/CategoryBlueprintsClient";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return categories.map((category) => ({ id: category.id }));
+}
 
 export default async function CategoryPage({
   params,
