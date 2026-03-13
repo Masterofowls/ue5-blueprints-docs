@@ -1,33 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { searchBlueprints } from "@/lib/data/sample-blueprints";
 import { categories } from "@/lib/data/categories";
 import BlueprintCard from "@/components/blueprint/BlueprintCard";
+import { useBlueprintLibrary } from "@/components/blueprint/useBlueprintLibrary";
+import type { BlueprintCategory } from "@/lib/types/blueprint";
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [results, setResults] = useState(searchBlueprints(""));
-
-  const handleSearch = (term: string, category: string) => {
-    let filtered = searchBlueprints(term);
-
-    if (category !== "all") {
-      filtered = filtered.filter((bp) => bp.category === category);
-    }
-
-    setResults(filtered);
-  };
+  const results = useBlueprintLibrary({
+    searchTerm,
+    category:
+      selectedCategory === "all"
+        ? undefined
+        : (selectedCategory as BlueprintCategory),
+  });
 
   const onSearchChange = (value: string) => {
     setSearchTerm(value);
-    handleSearch(value, selectedCategory);
   };
 
   const onCategoryChange = (value: string) => {
     setSelectedCategory(value);
-    handleSearch(searchTerm, value);
   };
 
   return (
@@ -58,6 +53,7 @@ export default function SearchPage() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
+                  <title>Search blueprints</title>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -74,11 +70,12 @@ export default function SearchPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Filters */}
         <div className="mb-8">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+          <div className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
             Filter by Category
-          </label>
+          </div>
           <div className="flex flex-wrap gap-2">
             <button
+              type="button"
               onClick={() => onCategoryChange("all")}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 selectedCategory === "all"
@@ -90,6 +87,7 @@ export default function SearchPage() {
             </button>
             {categories.map((category) => (
               <button
+                type="button"
                 key={category.id}
                 onClick={() => onCategoryChange(category.id)}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${

@@ -19,6 +19,12 @@ export default function Header() {
 
           <div className="flex items-center gap-6">
             <Link
+              href="/blueprints/new"
+              className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
+            >
+              Post Note
+            </Link>
+            <Link
               href="/blueprints"
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
             >

@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCategoryById } from "@/lib/data/categories";
-import { getBlueprintsByCategory } from "@/lib/data/sample-blueprints";
-import BlueprintCard from "@/components/blueprint/BlueprintCard";
+import CategoryBlueprintsClient from "@/components/blueprint/CategoryBlueprintsClient";
 
 export default async function CategoryPage({
   params,
@@ -15,9 +14,6 @@ export default async function CategoryPage({
   if (!category) {
     notFound();
   }
-
-  const blueprints = getBlueprintsByCategory(id);
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div
@@ -58,36 +54,10 @@ export default async function CategoryPage({
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {blueprints.length}{" "}
-            {blueprints.length === 1 ? "Blueprint" : "Blueprints"}
-          </h2>
-        </div>
-
-        {blueprints.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blueprints.map((blueprint) => (
-              <BlueprintCard key={blueprint.id} blueprint={blueprint} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-lg">
-            <div className="text-6xl mb-4">🚧</div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Coming Soon
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Blueprints for this category are being prepared
-            </p>
-            <Link
-              href="/categories"
-              className="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Browse Other Categories
-            </Link>
-          </div>
-        )}
+        <CategoryBlueprintsClient
+          category={category}
+          categoryId={category.id}
+        />
       </div>
     </div>
   );

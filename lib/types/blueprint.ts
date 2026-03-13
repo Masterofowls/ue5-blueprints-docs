@@ -48,6 +48,15 @@ export interface Connection {
   to: { nodeId: string; pinId: string };
 }
 
+export interface BlueprintEditorComment {
+  id?: string;
+  type: "inline" | "frame";
+  text: string;
+  position?: { x: number; y: number };
+  linkNodeId?: string;
+  nodeIds?: string[];
+}
+
 export interface Blueprint {
   id: string;
   title: string;
@@ -57,6 +66,7 @@ export interface Blueprint {
   ueVersion: string;
   nodes: BlueprintNode[];
   connections: Connection[];
+  editorComments?: BlueprintEditorComment[];
   code: string; // The raw UE blueprint text
   thumbnail?: string;
   tags: string[];

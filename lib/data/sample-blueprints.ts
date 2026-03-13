@@ -1052,6 +1052,330 @@ End Object`,
   thumbnail: "/images/blueprints/physics-impulse.png",
 };
 
+export const layeredMaterialBlueprint: Blueprint = {
+  id: "layered-material-surface",
+  title: "Layered Emissive Surface Material",
+  description:
+    "Interactive material-style graph with parameter controls, comment frames, and modular graph stages for UV shaping and surface response.",
+  category: "materials",
+  difficulty: "advanced",
+  ueVersion: "5.7",
+  tags: ["materials", "shader", "comments", "modules", "controls"],
+  author: "Documentation Team",
+  createdAt: "2026-03-13",
+  updatedAt: "2026-03-13",
+  nodes: [
+    {
+      id: "mat-node-1",
+      type: "function-call",
+      name: "Texture Coordinate",
+      position: { x: 0, y: 40 },
+      pins: [
+        {
+          id: "uv-out",
+          name: "UV",
+          type: "struct",
+          direction: "output",
+          connected: true,
+        },
+      ],
+    },
+    {
+      id: "mat-node-2",
+      type: "function-call",
+      name: "Multiply UV Scale",
+      position: { x: 320, y: 20 },
+      pins: [
+        {
+          id: "uv-in",
+          name: "UV",
+          type: "struct",
+          direction: "input",
+          connected: true,
+        },
+        {
+          id: "scale-in",
+          name: "Scale",
+          type: "float",
+          direction: "input",
+          connected: false,
+          defaultValue: "2.5",
+        },
+        {
+          id: "uv-out",
+          name: "Scaled UV",
+          type: "struct",
+          direction: "output",
+          connected: true,
+        },
+      ],
+      comment:
+        "Expose this scalar control to retile the material in real time.",
+    },
+    {
+      id: "mat-node-3",
+      type: "function-call",
+      name: "Sample Base Texture",
+      position: { x: 700, y: 20 },
+      pins: [
+        {
+          id: "uv-in",
+          name: "UV",
+          type: "struct",
+          direction: "input",
+          connected: true,
+        },
+        {
+          id: "color-out",
+          name: "Color",
+          type: "struct",
+          direction: "output",
+          connected: true,
+        },
+      ],
+    },
+    {
+      id: "mat-node-4",
+      type: "variable-get",
+      name: "Vector Parameter Tint",
+      position: { x: 700, y: 180 },
+      pins: [
+        {
+          id: "tint-out",
+          name: "Tint",
+          type: "string",
+          direction: "output",
+          connected: true,
+          defaultValue: "(1.00, 0.62, 0.41)",
+        },
+      ],
+    },
+    {
+      id: "mat-node-5",
+      type: "function-call",
+      name: "Multiply Tint",
+      position: { x: 1040, y: 80 },
+      pins: [
+        {
+          id: "a-in",
+          name: "Base Color",
+          type: "struct",
+          direction: "input",
+          connected: true,
+        },
+        {
+          id: "b-in",
+          name: "Tint",
+          type: "string",
+          direction: "input",
+          connected: true,
+        },
+        {
+          id: "color-out",
+          name: "Tinted Color",
+          type: "struct",
+          direction: "output",
+          connected: true,
+        },
+      ],
+    },
+    {
+      id: "mat-node-6",
+      type: "function-call",
+      name: "Fresnel",
+      position: { x: 700, y: 320 },
+      pins: [
+        {
+          id: "exp-in",
+          name: "Exponent",
+          type: "float",
+          direction: "input",
+          connected: false,
+          defaultValue: "4.0",
+        },
+        {
+          id: "fresnel-out",
+          name: "Value",
+          type: "float",
+          direction: "output",
+          connected: true,
+        },
+      ],
+    },
+    {
+      id: "mat-node-7",
+      type: "function-call",
+      name: "Lerp Emissive",
+      position: { x: 1040, y: 300 },
+      pins: [
+        {
+          id: "a-in",
+          name: "A",
+          type: "float",
+          direction: "input",
+          connected: false,
+          defaultValue: "0.0",
+        },
+        {
+          id: "b-in",
+          name: "B",
+          type: "float",
+          direction: "input",
+          connected: false,
+          defaultValue: "6.0",
+        },
+        {
+          id: "alpha-in",
+          name: "Alpha",
+          type: "float",
+          direction: "input",
+          connected: true,
+        },
+        {
+          id: "emissive-out",
+          name: "Emissive",
+          type: "float",
+          direction: "output",
+          connected: true,
+        },
+      ],
+      comment:
+        "The Lerp defaults become live controls because the Alpha input is linked, but A and B are not.",
+    },
+    {
+      id: "mat-node-8",
+      type: "function-call",
+      name: "Material Output",
+      position: { x: 1400, y: 140 },
+      pins: [
+        {
+          id: "base-color-in",
+          name: "Base Color",
+          type: "struct",
+          direction: "input",
+          connected: true,
+        },
+        {
+          id: "roughness-in",
+          name: "Roughness",
+          type: "float",
+          direction: "input",
+          connected: false,
+          defaultValue: "0.28",
+        },
+        {
+          id: "emissive-in",
+          name: "Emissive",
+          type: "float",
+          direction: "input",
+          connected: true,
+        },
+      ],
+      comment:
+        "A compact Unreal-style material output with exposed roughness tuning.",
+    },
+  ],
+  connections: [
+    {
+      id: "mat-conn-1",
+      from: { nodeId: "mat-node-1", pinId: "uv-out" },
+      to: { nodeId: "mat-node-2", pinId: "uv-in" },
+    },
+    {
+      id: "mat-conn-2",
+      from: { nodeId: "mat-node-2", pinId: "uv-out" },
+      to: { nodeId: "mat-node-3", pinId: "uv-in" },
+    },
+    {
+      id: "mat-conn-3",
+      from: { nodeId: "mat-node-3", pinId: "color-out" },
+      to: { nodeId: "mat-node-5", pinId: "a-in" },
+    },
+    {
+      id: "mat-conn-4",
+      from: { nodeId: "mat-node-4", pinId: "tint-out" },
+      to: { nodeId: "mat-node-5", pinId: "b-in" },
+    },
+    {
+      id: "mat-conn-5",
+      from: { nodeId: "mat-node-5", pinId: "color-out" },
+      to: { nodeId: "mat-node-8", pinId: "base-color-in" },
+    },
+    {
+      id: "mat-conn-6",
+      from: { nodeId: "mat-node-6", pinId: "fresnel-out" },
+      to: { nodeId: "mat-node-7", pinId: "alpha-in" },
+    },
+    {
+      id: "mat-conn-7",
+      from: { nodeId: "mat-node-7", pinId: "emissive-out" },
+      to: { nodeId: "mat-node-8", pinId: "emissive-in" },
+    },
+  ],
+  editorComments: [
+    {
+      id: "mat-comment-1",
+      type: "frame",
+      text: "UV Module",
+      nodeIds: ["mat-node-1", "mat-node-2", "mat-node-3"],
+    },
+    {
+      id: "mat-comment-2",
+      type: "frame",
+      text: "Surface Response Module",
+      nodeIds: [
+        "mat-node-4",
+        "mat-node-5",
+        "mat-node-6",
+        "mat-node-7",
+        "mat-node-8",
+      ],
+    },
+    {
+      id: "mat-comment-3",
+      type: "inline",
+      text: "Double-click or use the toolbar to add more comments. These comments are live Rete comments, not static labels.",
+      position: { x: 1060, y: -120 },
+    },
+  ],
+  code: `Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionTextureCoordinate"
+   NodePosX=0
+   NodePosY=40
+   NodeGuid=AA111111111111111111111111111111
+End Object
+Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionMultiply_UVScale"
+   NodePosX=320
+   NodePosY=20
+   NodeGuid=BB222222222222222222222222222222
+End Object
+Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionTextureSample_Base"
+   NodePosX=700
+   NodePosY=20
+   NodeGuid=CC333333333333333333333333333333
+End Object
+Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionVectorParameter_Tint"
+   NodePosX=700
+   NodePosY=180
+   NodeGuid=DD444444444444444444444444444444
+End Object
+Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionFresnel"
+   NodePosX=700
+   NodePosY=320
+   NodeGuid=EE555555555555555555555555555555
+End Object
+Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionLinearInterpolate_Emissive"
+   NodePosX=1040
+   NodePosY=300
+   NodeGuid=FF666666666666666666666666666666
+End Object
+Begin Object Class=/Script/Engine.MaterialGraphNode Name="MaterialExpressionMaterialOutput"
+   NodePosX=1400
+   NodePosY=140
+   NodeGuid=GG777777777777777777777777777777
+End Object`,
+  thumbnail: "/images/blueprints/layered-material-surface.png",
+};
+
 export const sampleBlueprints: Blueprint[] = [
   characterMovementBlueprint,
   doorOpenBlueprint,
@@ -1059,6 +1383,7 @@ export const sampleBlueprints: Blueprint[] = [
   animationMontageBlueprint,
   aiChaseBlueprint,
   physicsImpulseBlueprint,
+  layeredMaterialBlueprint,
 ];
 
 export function getBlueprintById(id: string): Blueprint | undefined {

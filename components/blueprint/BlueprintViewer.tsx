@@ -49,6 +49,7 @@ export default function BlueprintViewer({ blueprint }: BlueprintViewerProps) {
         <InteractiveBlueprintEditor
           nodes={blueprint.nodes}
           connections={blueprint.connections}
+          comments={blueprint.editorComments}
           readonly={false}
         />
       </div>
